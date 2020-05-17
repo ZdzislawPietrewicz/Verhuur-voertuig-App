@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Verhuur voertuig 1.0</title>
+    <link rel="stylesheet"  th:href="@{../css/styles.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Rent Company</h2>
+        <ul>
+            <li><a href="#" th:href="@{/home}"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fas fa-compose-order"></i>Voertuigen samenstellen</a></li>
+            <li><a href="#"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
+            <li><a href="#" th:href="@{/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
+            <li><a href="#"><i class="fas fa-show-orders"></i>Orders inzien</a></li>
+            <li><a href="#"><i class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
+            <li><a href="#"><i class="fas fa-add-accessory"></i>Accessories toevoegen</a></li>
+            <li><a href="#"><i class="fas fa-show-accessory"></i>Accessories inzien</a></li>
+            <li><a href="#" th:href="@{/logmeout}"><i class="fas fa-log-out"></i>Uitloggen</a></li>
+        </ul>
+
+    </div>
+    <div class="main_content">
+        <div class="header"><span>Welkom </span><span th:text="${user.firstName}">Default</span><span>. Have a nice day !</span>
+        </div>
+        <div class="info">
+            <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus
+                sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat
+                illum tenetur, facilis porro. Quae fuga odio perferendis itaque alias sint, beatae non maiores magnam
+                ad, veniam tenetur atque ea exercitationem earum eveniet totam ipsam magni tempora aliquid ullam
+                possimus? Tempora nobis facere porro, praesentium magnam provident accusamus temporibus! Repellendus
+                harum veritatis itaque molestias repudiandae ea corporis maiores non obcaecati libero, unde ipsum
+                consequuntur aut consectetur culpa magni omnis vero odio suscipit vitae dolor quod dignissimos
+                perferendis eos? Consequuntur!
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Verhuur voertuig 1.0</title>
+    <style>
+        body {
+            margin: 0;
+        background-color: #4b4276;
+        font-family: sans-serif;
+        }
+
+        .boxlogin {
+            width: 300px;
+            padding: 40px;
+            margin: 40px auto;
+            text-align: center;
+            background-color: #4b4276;
+        }
+        .boxlogin h1 {
+            color: white;
+            font-weight: 400;
+            margin: 50px auto;
+            display: inline-block;
+        }
+        .boxlogin input[type="text"],.boxlogin input[type="password"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            border: 2px solid chartreuse;
+            padding: 8px 10px;
+            width: 200px;
+            outline: none;
+            border-radius: 20px;
+            color: white;
+            transition: 0.25s;
+        }
+        .boxlogin input[type="text"]:focus,.boxlogin input[type="password"]:focus {
+            width: 300px;
+            border-color: yellow;
+        }
+        .boxlogin input[type="submit"]{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 25px auto;
+            text-align: center;
+            border: 2px solid chartreuse;
+            padding: 12px 10px;
+            width: 200px;
+            outline: none;
+            border-radius: 20px;
+            color: white;
+            transition: 0.25s;
+        }
+        .boxlogin input[type ="submit"]:hover {
+            background: burlywood;
+        }
+    </style>
+</head>
+<body>
+<form class="boxlogin" action="processlogin" th:action="@{/processlogin}" method="post">
+    <h1>LOGIN</h1>
+    <input type="text" name="username" placeholder="Username"/> <br/>
+    <input type="password" name="password" placeholder="Password"/> <br/>
+    <input type="submit" value="Login"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Verhuur voertuig 1.0</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #4b4276;
+            font-family: sans-serif;
+            color: white;
+            text-align: center;
+        }
+        body h1 {
+            text-align: center;
+        }
+
+        a:hover {
+            cursor: pointer;
+            background-color: #ce0606;
+        }
+        a {
+            background-color: darkolivegreen;
+            box-shadow: 0 5px 0 darkred;
+            color: white;
+            padding: 1em 1.5em;
+            position: relative;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 20px;
+            display: inline-block;
+            margin: auto 0;
+        }
+
+        a:active {
+            box-shadow: none;
+            top: 5px;}
+    </style>
+</head>
+<body>
+<h1> Verhuur voertuig 1.0</h1>
+<a href="#" th:href="@{/register}">Register</a>
+<a href="#" th:href="@{/home}">Login</a>
+
+</body>
+</html>

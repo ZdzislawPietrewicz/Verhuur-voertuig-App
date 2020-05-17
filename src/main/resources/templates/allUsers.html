@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<title>Verhuur voertuig 1.0</title>
+	<link rel="stylesheet" type="text/css"   th:href="@{../css/styles.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>Rent Company</h2>
+        <ul>
+            <li><a href="#" th:href="@{/home}"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fas fa-compose-order"></i>Voertuigen samenstellen</a></li>
+            <li><a href="#"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
+            <li><a href="#" th:href="@{/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
+            <li><a href="#"><i class="fas fa-show-orders"></i>Orders inzien</a></li>
+            <li><a href="#"><i class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
+            <li><a href="#"><i class="fas fa-add-accessory"></i>Accessories toevoegen</a></li>
+            <li><a href="#"><i class="fas fa-show-accessory"></i>Accessories inzien</a></li>
+            <li><a href="#" th:href="@{/logmeout}"><i class="fas fa-log-out"></i>Uitloggen</a></li>
+        </ul> 
+
+    </div>
+    <div class="main_content">
+        <div class="header"><span>Welkom </span><span th:text="${user?.firstName}">Default</span><span>. Have a nice day !</span></div>
+        <h2>Alle gebruikers</h2>
+        <p>In deze tabel ziet u alle gebruikers die in onze systeem bestaan.</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Voornaam</th>
+                <th>Achternaam</th>
+                <th>Geboortedatum</th>
+                <th>Straat</th>
+                <th>Huisnummber</th>
+                <th>Toevoeging</th>
+                <th>Postcode</th>
+                <th>Province</th>
+                <th>Country</th>
+                <th>Inschrijfdatum</th>
+                <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="User : ${allUsers}">
+                <td th:text="${User.username}"></td>
+                <td th:text="${User?.firstName}"></td>
+                <td th:text="${User?.lastName}"></td>
+                <td th:text="${User?.dateOfBirth}"></td>
+                <td th:text="${User?.street}"></td>
+                <td th:text="${User?.houseNumber}"></td>
+                <td th:text="${User?.addition}"></td>
+                <td th:text="${User?.postalCode}"></td>
+                <td th:text="${User?.province}"></td>
+                <td th:text="${User?.country}"></td>
+                <td th:text="${User?.registerDate}"></td>
+                <td th:text="${User?.roleName}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
