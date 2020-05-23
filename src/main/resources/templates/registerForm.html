@@ -62,30 +62,30 @@
 </head>
 <body>
 <h1 style="text-align: center; color: white">Een nieuwe klant toevoegen</h1>
-<form class="boxRegister" action="#" method="post" th:action="@{/register}" th:object="${user}">
+<form class="boxRegister" action="#" method="POST" th:action="@{/registerProcess}" th:object="${user}">
     <input type="text" th:field="*{firstName}" placeholder="First Name"/>
     <br>
     <input type="text" th:field="*{lastName}" placeholder="Last Name"/>
     <br>
     <input type="date" th:field="*{dateOfBirth}" placeholder="Date Of Birth"/>
     <br>
-    <input type="text" th:field="*{street}" placeholder="Street"/>
+    <input type="text" th:field="*{address.street}" placeholder="Street"/>
     <br>
-    <input type="number" th:field="*{houseNumber}" placeholder="House number"/>
+    <input type="number" th:field="*{address.houseNumber}" placeholder="House number"/>
     <br>
-    <input type="text" th:field="*{addition}" placeholder="Addition"/>
+    <input type="text" th:field="*{address.addition}" placeholder="Addition"/>
     <br>
-    <input type="text" th:field="*{postalCode}" placeholder="Postal code"/>
+    <input type="text" th:field="*{address.postalCode}" placeholder="Postal code"/>
     <br>
-    <input type="text" th:field="*{province}" placeholder="Province"/>
+    <input type="text" th:field="*{address.city}" placeholder="City"/>
     <br>
-    <input type="text" th:field="*{country}" placeholder="Country"/>
+    <input type="text" th:field="*{address.province}" placeholder="Province"/>
+    <br>
+    <input type="text" th:field="*{address.country}" placeholder="Country"/>
     <br>
     <input  type="text" th:field="*{username}" placeholder="Username"/>
     <br>
     <input type="password" th:field="*{password}" placeholder="Password"/>
-    <br>
-    <input type="date" th:field="*{registerDate}" placeholder="Register date"/>
     <br>
     <input type="submit" value="Register"/>
 

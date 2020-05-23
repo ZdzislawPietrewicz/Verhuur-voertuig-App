@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,13 +16,13 @@ public class UserService {
 
     private UserRepository userRepository;
 
-
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository=userRepository;
+
     }
 
     @Autowired
@@ -30,6 +32,8 @@ public class UserService {
 
 
     public void addWithDefaultRole(User user){
+        Date registerDate= Calendar.getInstance().getTime();
+        user.setRegisterDate(registerDate);
         user.setRoleName(DEFAULT_ROLE);
         String passwordHash=passwordEncoder.encode(user.getPassword());
         user.setPassword(passwordHash);

@@ -2,14 +2,18 @@ package nl.zdzislaw.verhuur_voertuig.model.Users;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="UserID")
+    @NotNull
+    private int userID;
     @Column(name = "FirstName")
     private String firstName;
     @Column(name = "LastName")
@@ -17,19 +21,9 @@ public class User {
     @Column(name = "DateOfBirth")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
-    @Column(name = "Street")
-    private String street;
-    @Column(name = "HouseNumber")
-    private int houseNumber;
-    @Column(name = "Addition")
-    private String addition;
-    @Column(name = "PostalCode")
-    private String postalCode;
-    @Column(name = "Province")
-    private String province;
-    @Column(name = "Country")
-    private String country;
-    @Id
+    @OneToOne (cascade = {CascadeType.ALL})
+    @JoinColumn(name="AddressID")
+    private Address address;
     @NotEmpty
     @Column(name = "Username")
     private String username;
@@ -44,7 +38,13 @@ public class User {
     @Column(name="Enabled")
     private Boolean enabled;
 
+    public int getUserID() {
+        return userID;
+    }
 
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -70,52 +70,12 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getStreet() {
-        return street;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public int getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(int houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getAddition() {
-        return addition;
-    }
-
-    public void setAddition(String addition) {
-        this.addition = addition;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getUsername() {
@@ -158,42 +118,32 @@ public class User {
         this.enabled = enabled;
     }
 
-    public User(String firstName, String lastName, Date dateOfBirth, String street, int houseNumber, String addition, String postalCode, String province, String country, String username, String password, Date registerDate, String roleName, Boolean enabled) {
+    public User() {
+    }
+
+    public User(String firstName, String lastName, Date dateOfBirth, @NotEmpty String username, @NotEmpty String password, Date registerDate, String roleName, Boolean enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.addition = addition;
-        this.postalCode = postalCode;
-        this.province = province;
-        this.country = country;
         this.username = username;
         this.password = password;
         this.registerDate = registerDate;
-        this.roleName=roleName;
-        this.enabled=enabled;
-    }
-
-    public User() {
+        this.roleName = roleName;
+        this.enabled = enabled;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
+                "userID=" + userID +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", street='" + street + '\'' +
-                ", houseNumber=" + houseNumber +
-                ", addition='" + addition + '\'' +
-                ", postalCode='" + postalCode + '\'' +
-                ", province='" + province + '\'' +
-                ", country='" + country + '\'' +
+                ", address=" + address +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", registerDate=" + registerDate +
-                ", authority='" + roleName + '\'' +
+                ", roleName='" + roleName + '\'' +
                 ", enabled=" + enabled +
                 '}';
     }

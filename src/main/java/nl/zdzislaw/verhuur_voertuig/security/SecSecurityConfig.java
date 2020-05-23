@@ -28,9 +28,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
         JdbcUserDetailsManager userDetailsManager=builder.getUserDetailsService();
         userDetailsManager.setUsersByUsernameQuery("SELECT Username, Password, Enabled FROM User WHERE Username=?");
         userDetailsManager.setAuthoritiesByUsernameQuery("SELECT Username, RoleName FROM User WHERE Username=?");
-        userDetailsManager.setCreateUserSql("INSERT INTO User (FirstName, LastName, DateOfBirth, Street, HouseNumber, Addition, PostalCode, Province, Country, Username, Password, RegisterDate, Role_Name, Enabled) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        userDetailsManager.setCreateUserSql("INSERT INTO User (FirstName, LastName, DateOfBirth, Username, Password, RegisterDate, Role_Name, Enabled) VALUES (?,?,?,?,?,?,?,?)");
        userDetailsManager.setCreateAuthoritySql("INSERT INTO User(Username, RoleName) VALUES (?,?)");
-        //builder.withUser("root").password("{noop}123").roles("ADMIN");
     }
 
     @Override
@@ -39,13 +38,17 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/registerProcess").permitAll()
+                .antMatchers("/registerSuccess").permitAll()
+                .antMatchers("https://www.europcar.nl/*").permitAll()
+              /*  .antMatchers("/admin/*").hasRole("ADMIN")*/
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/loginform")
                 .permitAll()
                 .loginProcessingUrl("/processlogin")
-                .permitAll()
+                .defaultSuccessUrl("/home",true)
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()

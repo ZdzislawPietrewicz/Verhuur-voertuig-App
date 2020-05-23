@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Verhuur voertuig 1.0</title>
-    <link rel="stylesheet"  th:href="@{../css/styles.css}">
+    <link rel="stylesheet" th:href="@{../css/styles.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body>
 
@@ -18,10 +19,11 @@
             <li><a href="#"><i class="fas fa-compose-order"></i>Voertuigen samenstellen</a></li>
             <li><a href="#"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
             <li><a href="#"><i class="fas fa-show-extras"></i>Accessories inzien</a></li>
-            <span th:if ="${session.user.roleName=='ROLE_ADMIN'}">
+            <span th:if="${session.user.roleName=='ROLE_ADMIN'}">
             <li><a href="#" th:href="@{/admin/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
             <li><a href="#"><i class="fas fa-show-orders"></i>Orders inzien</a></li>
-            <li><a href="#" th:href="@{/admin/addVehicle}"><i class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
+            <li><a href="#" th:href="@{/admin/addVehicle}"><i
+                    class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
             <li><a href="#"><i class="fas fa-add-extras"></i>Accessories toevoegen</a></li>
         </span>
             <li><a href="#" th:href="@{/logmeout}"><i class="fas fa-log-out"></i>Uitloggen</a></li>
@@ -35,23 +37,27 @@
             <div>
                 <span>Type van voertuig die u in het systeem wilt toevoegen</span>
                 <ul class="nav nav-tabs">
-                    <li role="presentation"><a href="#" th:href="@{/admin/addVehicle}">Auto</a></li>
+                    <li role="presentation" class="active"><a href="#" th:href="@{/admin/addVehicle}">Auto</a></li>
                     <li role="presentation"><a href="#" th:href="@{/admin/addBus}">Bus</a></li>
-                    <li role="presentation" class="active"><a href="#" th:href="@{/admin/addScooter}">Scooter</a></li>
+                    <li role="presentation"><a href="#" th:href="@{/admin/addScooter}">Scooter</a></li>
                 </ul>
 
             </div>
             <div>
-                <form class="addNewVehicle" action="#" method="GET" th:action="@{/registerScooter}" th:object="${scooter}">
-                    <p>Naam van scooter: </p>
+                <form class="addNewVehicle" action="#" method="GET" th:action="@{/registerAuto}" th:object="${auto}">
+                    <p>Naam van voertuig : </p>
                     <input type="text" class="form-control" th:field="*{vehicleName}" placeholder="Voertuig naam"/>
                     <p>Motorinhoud : </p>
                     <input type="number" class="form-control" th:field="*{engineCapacity}" placeholder="Motorinhoud"/>
                     <p>Aantal zitplaatsen :</p>
                     <select class="form-control" th:field="*{numberOfSeats}">
-                        <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
                     </select>
                     <p>Huurprijs per dag :</p>
                     <input type="number" step="0.01"class="form-control" th:field="*{pricePerDay}"
@@ -59,21 +65,33 @@
                     <p>Soort van brandstof : </p>
                     <select class="form-control" th:field="*{fuelType}">
                         <option value="Benzine">Benzine</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Hybride">Hybride</option>
                         <option value="Elektrisch">Electrisch</option>
+                        <option value="LPG">LPG</option>
                     </select>
-                    <p>Helm verplicht ? </p>
-                    <select class="form-control" th:field="*{helmentObligation}">
-                        <option value="1">Ja</option>
-                        <option value="0">Nee</option>
+                    <p>Is airco ? </p>
+                    <select class="form-control" th:field="*{isAirConditioning}">
+                        <option value="true">Ja</option>
+                        <option value="true">Nee</option>
                     </select>
-                    <p>Maximum snelheid ?</p>
-                    <input type="number" th:field="*{maxSpeed}">
-
+                    <p>Is handgeschakeld ?</p>
+                    <select class="form-control" th:field="${auto.isManualTransmission}">
+                         <option value=1>Ja</option>
+                         <option value=0>Nee</option>
+                     </select>
+                    <p>Aantal deuren : </p>
+                    <select class="form-control" th:field="*{numberOfDoors}">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                     <p>Afbeelding link</p>
                     <input type="text" class="form-control" th:field="*{sourceImage}"
                            placeholder="http://www.abcd.com/image.jpg"/>
                     <br>
-                    <button type="submit" class="btn btn-primary">Voeg scooter toe</button>
+                    <button type="submit" class="btn btn-primary">Voeg auto toe</button>
                 </form>
             </div>
         </div>

@@ -15,18 +15,20 @@
         <ul>
             <li><a href="#" th:href="@{/home}"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-compose-order"></i>Voertuigen samenstellen</a></li>
-            <li><a href="#"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
-            <li><a href="#" th:href="@{/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
+            <li><a href="#" th:href="@{/showAllVehicles}"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
+            <li><a href="#"><i class="fas fa-show-extras"></i>Extra's inzien</a></li>
+            <span th:if ="${session.user.roleName=='ROLE_ADMIN'}">
+            <li><a href="#" th:href="@{/admin/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
             <li><a href="#"><i class="fas fa-show-orders"></i>Orders inzien</a></li>
-            <li><a href="#"><i class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
-            <li><a href="#"><i class="fas fa-add-accessory"></i>Accessories toevoegen</a></li>
-            <li><a href="#"><i class="fas fa-show-accessory"></i>Accessories inzien</a></li>
+            <li><a href="#" th:href="@{/admin/addVehicle}"><i class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
+            <li><a href="#"><i class="fas fa-add-extras"></i>Extra's toevoegen</a></li>
+        </span>
             <li><a href="#" th:href="@{/logmeout}"><i class="fas fa-log-out"></i>Uitloggen</a></li>
         </ul>
 
     </div>
     <div class="main_content">
-        <div class="header"><span>Welkom </span><span th:text="${user.firstName}">Default</span><span>. Have a nice day !</span>
+        <div class="header"><span>Welcome </span><span th:text="${session.user.firstName}">Default</span><span>. Have a nice day !</span>
         </div>
         <div class="info">
             <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus
