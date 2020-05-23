@@ -28,7 +28,7 @@
 
     </div>
     <div class="main_content">
-        <div class="header"><span>Welkom </span><span th:text="${user?.firstName}">Default</span><span>. Have a nice day !</span></div>
+        <div class="header"><span>Welkom </span><span th:text="${session.user.firstName}">Default</span><span>. Have a nice day !</span></div>
         <h2>Alle gebruikers</h2>
         <p>In deze tabel ziet u alle gebruikers die in onze systeem bestaan.</p>
         <table class="table table-striped">
@@ -42,6 +42,7 @@
                 <th>Huisnummber</th>
                 <th>Toevoeging</th>
                 <th>Postcode</th>
+                <th>City</th>
                 <th>Province</th>
                 <th>Country</th>
                 <th>Inschrijfdatum</th>
@@ -53,14 +54,15 @@
                 <td th:text="${User.username}"></td>
                 <td th:text="${User?.firstName}"></td>
                 <td th:text="${User?.lastName}"></td>
-                <td th:text="${User?.dateOfBirth}"></td>
-                <td th:text="${User?.street}"></td>
-                <td th:text="${User?.houseNumber}"></td>
-                <td th:text="${User?.addition}"></td>
-                <td th:text="${User?.postalCode}"></td>
-                <td th:text="${User?.province}"></td>
-                <td th:text="${User?.country}"></td>
-                <td th:text="${User?.registerDate}"></td>
+                <td th:text="${#dates.format(User.dateOfBirth,'dd-MM-yyyy')}">date</td>
+                <td th:text="${User?.address?.street}"></td>
+                <td th:text="${User?.address?.houseNumber}"></td>
+                <td th:text="${User?.address?.addition}"></td>
+                <td th:text="${User?.address?.postalCode}"></td>
+                <td th:text="${User?.address?.city}"></td>
+                <td th:text="${User?.address?.province}"></td>
+                <td th:text="${User?.address?.country}"></td>
+                <td th:text="${#dates.format(User.registerDate,'dd-MM-yyyy')}">date</td>
                 <td th:text="${User?.roleName}"></td>
             </tr>
 

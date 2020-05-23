@@ -42,6 +42,58 @@ LOCK TABLES `Accessory` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Address`
+--
+
+DROP TABLE IF EXISTS `Address`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Address` (
+  `AddressID` int(11) NOT NULL AUTO_INCREMENT,
+  `Street` varchar(50) DEFAULT NULL,
+  `HouseNumber` int(11) DEFAULT NULL,
+  `Addition` varchar(50) DEFAULT NULL,
+  `PostalCode` varchar(10) DEFAULT NULL,
+  `City` varchar(50) DEFAULT NULL,
+  `Province` varchar(50) DEFAULT NULL,
+  `Country` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`AddressID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Address`
+--
+
+LOCK TABLES `Address` WRITE;
+/*!40000 ALTER TABLE `Address` DISABLE KEYS */;
+INSERT INTO `Address` VALUES (1,'Harpstraat',34,'A','5642RB','Eindhoven','Noord Brabant','Nederland'),(2,'Assepoester',19,'A','5629KE','Eindhoven','Noord brabant','Nederland'),(3,'Bosweg',15,'','1456XY','Appeldoorn','Gelderland','Nederland'),(4,'Heliosstraat',11,'B','1430','Aalsmeer','Noord Holland','Nederland'),(5,'Koningslaan',50,'XYZ','5600','Best','Noord brabant','Nederland'),(6,'Meerzorg',30,'X','5944','Arcen','Limburg','Nederland'),(7,'Zichtweg',122,'','8100NW','Zwolle','Overijsel','Nederland');
+/*!40000 ALTER TABLE `Address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (14),(14);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Order`
 --
 
@@ -126,22 +178,20 @@ DROP TABLE IF EXISTS `User`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `User` (
+  `UserID` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(50) DEFAULT NULL,
   `LastName` varchar(50) DEFAULT NULL,
   `DateOfBirth` date DEFAULT NULL,
-  `Street` varchar(50) DEFAULT NULL,
-  `HouseNumber` int(11) DEFAULT NULL,
-  `Addition` varchar(5) DEFAULT NULL,
-  `PostalCode` varchar(6) DEFAULT NULL,
-  `Province` varchar(50) DEFAULT NULL,
-  `Country` varchar(50) DEFAULT NULL,
+  `AddressID` int(11) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `Password` varchar(100) DEFAULT NULL,
+  `Password` varchar(150) NOT NULL,
   `RegisterDate` date DEFAULT NULL,
   `RoleName` varchar(50) DEFAULT NULL,
   `Enabled` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`Username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`UserID`),
+  KEY `fk_address_id_idx` (`AddressID`),
+  CONSTRAINT `fk_address_id` FOREIGN KEY (`AddressID`) REFERENCES `address` (`AddressID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +200,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES ('jan','de Wit','1960-10-09','Paradijslaan',20,'B','1020XY','Noord Holland','Nederland','jan','{bcrypt}$2a$10$ENvLB7p3ngv4sGHHKkcaFOZG02bXAeRqIH5i3yehUo5r9MomCDHma','2020-05-16','ROLE_USER',1),('zdzislaw','pietrewicz','1980-01-19','Molenstraat',3,'A','5644AB','Noord Brabant','Nederland','zdzis','{bcrypt}$2a$10$mB44pDbZy0XwXxsf7FxaE.QLUtDzzN6PzFLKwqDyBV0JMALYZ4zFi','2020-05-16','ROLE_USER',1);
+INSERT INTO `User` VALUES (1,'Zdzislaw','Pietrewicz','1984-11-28',1,'zdzis','123','2020-05-17','ROLE_USER',1),(2,'Dominika','Osuchowska','2020-05-19',2,'domi','{bcrypt}$2a$10$CL9.0tZxX0I3nypZEdBt0.BfLq9XKmPF92/FrZcMEF7f9PhkvRpIm','2020-05-19','ROLE_USER',1),(3,'Sharp','Leo','1990-01-04',3,'Sharp','{bcrypt}$2a$10$nLUnO1bbh2rkazjzFI6.v.pGVKasnS7Z25NN2PL6SJZndF/srsB7W','2020-05-21','ROLE_USER',1),(4,'George','Long','1980-05-04',4,'george','{bcrypt}$2a$10$MzMNH.kMD8zAyB/2D.iq1.zXXRQxmgNu.ruULt1bQpeITDwFGedtu','2020-05-21','ROLE_USER',1),(5,'Maja','Stevens','1972-04-14',5,'maja','{bcrypt}$2a$10$DhIxJlWXb2jr0MgVuxDgVedNxG2Ro5JRqvNj.Br7d71ZgOPefWbem','2020-05-21','ROLE_USER',1),(6,'Sophia','Beckbau','1983-04-15',6,'sophia','{bcrypt}$2a$10$da4qsYL51UN035bCQvf2zuGYnEE.bVLY6Or4LpgLUKP6.w8Ai6b2e','2020-05-21','ROLE_USER',1),(7,'Stefan','de Vries','1978-12-26',7,'stefan','{bcrypt}$2a$10$zZ5dXD4iSP/Gs14ZsDPhk./2HKhQIjthcnmlxWjhZtVv.ICen1x92','2020-05-21','ROLE_USER',1);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-17 15:43:28
+-- Dump completed on 2020-05-21 13:10:00
