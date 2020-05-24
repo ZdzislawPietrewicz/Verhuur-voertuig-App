@@ -1,35 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Verhuur voertuig 1.0</title>
-    <link rel="stylesheet"  th:href="@{../css/styles.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <th:block th:include="general.html :: headerfiles">
+    </th:block>
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar">
-        <h2>Rent Company</h2>
-        <ul>
-            <li><a href="#" th:href="@{/home}"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="#"><i class="fas fa-compose-order"></i>Voertuigen samenstellen</a></li>
-            <li><a href="#" th:href="@{/showAllVehicles}"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
-            <li><a href="#"><i class="fas fa-show-extras"></i>Extra's inzien</a></li>
-            <span th:if ="${session.user.roleName=='ROLE_ADMIN'}">
-            <li><a href="#" th:href="@{/admin/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
-            <li><a href="#"><i class="fas fa-show-orders"></i>Orders inzien</a></li>
-            <li><a href="#" th:href="@{/admin/addVehicle}"><i class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
-            <li><a href="#" th:href="@{/admin/addExtras}"><i class="fas fa-add-extras"></i>Extra's toevoegen</a></li>
-        </span>
-            <li><a href="#" th:href="@{/logmeout}"><i class="fas fa-log-out"></i>Uitloggen</a></li>
-        </ul>
-
-    </div>
+    <div th:insert="general.html :: sidebar"></div>
     <div class="main_content">
-        <div class="header"><span>Welcome </span><span th:text="${session.user.firstName}">Default</span><span>. Have a nice day !</span>
-        </div>
+        <div th:insert="general.html :: header"></div>
         <div class="info">
             <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. A sed nobis ut exercitationem atque accusamus
                 sit natus officiis totam blanditiis at eum nemo, nulla et quae eius culpa eveniet voluptatibus repellat
@@ -43,6 +23,6 @@
         </div>
     </div>
 </div>
-
+<div th:insert="general.html :: javascript"></div>
 </body>
 </html>

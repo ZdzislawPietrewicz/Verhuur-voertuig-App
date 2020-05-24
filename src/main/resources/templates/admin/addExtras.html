@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="general.html :: headerfiles">
+    </th:block>
+</head>
+<body>
+
+<div class="wrapper">
+    <div th:insert="general.html :: sidebar"></div>
+    <div class="main_content">
+        <div th:insert="general.html :: header"></div>
+        <div class="info">
+
+            <div>
+                <form class="addExtra" action="#" method="GET" th:action="@{/registerExtra}" th:object="${extras}">
+                    <p>Omschrijving van nieuwe optie : </p>
+                    <input type="text" class="form-control" th:field="${extras.description}" placeholder="Omschrijving van optie"/>
+                    <p>Huurprijs per dag :</p>
+                    <input type="number" step="0.01"class="form-control" th:field="${extras.pricePerDay}"
+                           placeholder="0.0"/>
+                    <button type="submit" class="btn btn-primary">Voeg extra toe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="general.html :: javascript"></div>
+</body>
+</html>

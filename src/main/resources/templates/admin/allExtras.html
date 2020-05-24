@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="general.html :: headerfiles">
+    </th:block>
+</head>
+<body>
+
+<div class="wrapper">
+    <div th:insert="general.html :: sidebar"></div>
+    <div class="main_content">
+        <div th:insert="general.html :: header"></div>
+        <h2>Alle extra opties</h2>
+        <p>In deze tabel ziet u extra opties die in onze systeem bestaan.</p>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Omschrijving van extra opties</th>
+                <th>Prijs per dag</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Extra : ${allExtras}">
+                <td th:text="${Extra?.description}"></td>
+                <td th:text="${Extra?.pricePerDay}"></td>
+
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:insert="general.html :: javascript"></div>
+</body>
+</html>

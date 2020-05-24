@@ -46,4 +46,13 @@ public class Extras {
 
     public Extras() {
     }
+
+    @Override
+    public String toString() {
+        return "Extras{" +
+                "extrasID=" + extrasID +
+                ", description='" + description + '\'' +
+                ", pricePerDay=" + pricePerDay +
+                '}';
+    }
 }

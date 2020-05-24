@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelaf.org">
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Verhuur voertuig 1.0</title>
+    <link rel="stylesheet" th:href="@{../css/styles.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="header" th:fragment="header"><span>Welcome </span><span
+        th:text="${session.user.firstName}">Default</span><span>. Have a nice day !</span>
+</div>
+<div class="sidebar" th:fragment="sidebar">
+    <h2>Rent Company</h2>
+    <ul>
+        <li><a href="#" th:href="@{/home}"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="#"th:href="@{/composeOrder}"><i class="fas fa-compose-order"></i>Voertuigen samenstellen</a></li>
+        <li><a href="#" th:href="@{/showAllVehicles}"><i class="fas fa-show-vehicles"></i>Voertuigen inzien</a></li>
+        <li><a href="#" th:href="@{/showAllExtras}"><i class="fas fa-show-extras"></i>Extra's inzien</a></li>
+        <span th:if="${session.user.roleName=='ROLE_ADMIN'}">
+            <li><a href="#" th:href="@{/admin/showAllUsers}"><i class="fas fa-show-users"></i>Klanten inzien</a></li>
+            <li><a href="#"><i class="fas fa-show-orders"></i>Orders inzien</a></li>
+            <li><a href="#" th:href="@{/admin/addVehicle}"><i
+                    class="fas fa-add-vehicle"></i>Voertuigen toevoegen</a></li>
+            <li><a href="#" th:href="@{/admin/addExtras}"><i class="fas fa-add-extras"></i>Extra's toevoegen</a></li>
+        </span>
+        <li><a href="#" th:href="@{/logmeout}"><i class="fas fa-log-out"></i>Uitloggen</a></li>
+    </ul>
+
+</div>
+<div th:fragment="javascript">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </head>
+</div>
+</body>
+</html>

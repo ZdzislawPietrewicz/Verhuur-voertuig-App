@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="general.html :: headerfiles">
+    </th:block>
+</head>
+<body>
+
+<div class="wrapper">
+    <div th:insert="general.html :: sidebar"></div>
+    <div class="main_content">
+        <div th:insert="general.html :: header"></div>
+        <div class="info">
+            <form class="boxRegister" action="#" method="POST"  th:object="${order}">
+                <p>Kies een gewenste ophaaldatum:</p>
+                <input type="date"  placeholder="Date Of Birth"/>
+                <br>
+                <input type="time" name="beginTime">
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="general.html :: javascript"></div>
+</body>
+</html>
